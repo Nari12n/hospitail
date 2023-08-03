@@ -1,0 +1,61 @@
+Create mongo-DB account
+https://account.mongodb.com/account/login
+select-Options Below
+LearnMango DB
+I am just Explorer
+Other
+--- ---- --- 
+Free
+AWS
+Region ---- select region
+Cluster         
+Tages (environment:Deployment)    ---     mango db give user-name and password
+Cloud
+Finish ,close
+Connect
+Mangodb
+You can see link, in that link ad password and copy link(this link will be used in vi mangoose.js in terminal)
+Ex-link: mongodb+srv://naveen0794:<password>@cluster0.tfszqnj.mongodb.net/
+------ ------    -----    ------   ------    -------   -----   
+Amazon Ec2-kernal (AMI) & ssh log-In
+sudo su –
+yum install git -y
+git clone https://github.com/rajnaveen788/hospital.git
+cd /root/hospital/Hospital-management-nodejs-master/server/db
+vi mangoose.js
+var mongoose = require ('mongoose');
+
+
+mongoose.Promise = global.Promise;
+
+//change the database with yours
+mongoose.connect("mongodb+srv://naveen0794:Naveen@143@cluster0.tfszqnj.mongodb.net/");
+
+module.exports = {mongoose};
+------    ----   - --
+note : //change the database with yours
+ mongoose.connect("***********"); ***= avalible at mango db account cluster
+-----    -- - --   --
+cd /root/hospital/Hospital-management-nodejs-master
+vi Dockerfile
+FROM ubuntu
+USER root
+RUN apt update -y
+RUN apt install nodejs -y
+RUN apt install npm -y
+COPY . .
+RUN npm install 
+RUN chmod -R 777 node_modules
+ENTRYPOINT ["npm", "run", "start"]
+---   ---   ---   ---   ---   
+Yum install docker -y
+systemctl start docker
+systemctl status docker
+docker build -t naveen:vol1 .
+docker images
+ docker run -itd -p "3000:3000" image ID
+ docker ps
+google search
+http://13.233.158.138:3000
+
+
